@@ -1,12 +1,13 @@
-import { Container, Row, Col, Navbar, Badge } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import React from "react";
-import ItemCard from "./components/ItemCard";
-import FormContact from "./components/FormContact";
-import useContacts from "./hook/useContact";
-import Loading from "./components/Loading";
-import Empty from "./components/Empty";
-import UseModalName from "./hook/useModalName";
-import ModalName from "./components/Modal";
+import ContactCard from "../Components/ContactCard/ContactCard";
+import FormContact from "../Components/FormContact";
+import useContacts from "../hook/useContact";
+import Loading from "../../../core/components/Loading";
+import Empty from "../../../core/components/Empty";
+import UseModalName from "../hook/useModalName";
+import ModalName from "../../../core/components/Modal";
+import NavBar from "../../../core/components/NavBar";
 
 const App = () => {
   const { contact, listContacts, addContact, deleteContact, loading } =
@@ -24,18 +25,7 @@ const App = () => {
         setNameProfile={setNameProfile}
         addName={addName}
       />
-      <Navbar bg="light">
-        <Container>
-          <Navbar.Brand href="#">WELLCOME {nameProfile}</Navbar.Brand>
-        </Container>
-
-        <Navbar.Brand href="#">
-          Contactos{" "}
-          <Badge bg={listContacts.length !== 0 ? "primary" : "secondary"}>
-            {listContacts.length}
-          </Badge>
-        </Navbar.Brand>
-      </Navbar>
+      <NavBar nameProfile={nameProfile} count={listContacts.length} />
       <Container style={{ padding: 40 }}>
         <Row>
           <Col
@@ -47,7 +37,7 @@ const App = () => {
               <Loading />
             ) : listContacts.length !== 0 ? (
               listContacts.map((e, index) => (
-                <ItemCard
+                <ContactCard
                   contact={e}
                   id={index}
                   key={index}

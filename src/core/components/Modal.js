@@ -2,10 +2,11 @@ import { Modal, Button, Form, FormControl } from "react-bootstrap";
 
 const ModalName = (props) => {
   const { show, setOpenModal, addName, setNameProfile } = props;
+
   return (
     <Modal show={show}>
       <Modal.Header>
-        <Modal.Title>Ingresa tu nombre</Modal.Title>
+        <Modal.Title>Hola! ✋ </Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -14,7 +15,7 @@ const ModalName = (props) => {
           <Form.Group className="mb-3" controlId="formName">
             <FormControl
               type="text"
-              placeholder="Nombre"
+              placeholder="Ingresa tu nombre completo"
               onChange={(value) => {
                 setNameProfile(value.target.value);
               }}

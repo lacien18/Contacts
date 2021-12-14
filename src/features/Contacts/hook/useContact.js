@@ -16,17 +16,26 @@ const useContacts = (_) => {
     getContacts();
   }, []);
 
+  const getContacts = (_) => {
+    setTimeout(() => {
+      const contactsStorage = JSON.parse(window.localStorage.getItem(keyStore));
+
+      setListContacts(contactsStorage ?? []);
+
+      setLoading(false);
+    }, 1000);
+  };
+
   const sendToStorage = (listData) => {
     window.localStorage.setItem(keyStore, JSON.stringify(listData));
   };
 
   const addContact = (_) => {
-      const listData = [...listContacts, contact];
+    const listData = [...listContacts, contact];
 
-      setListContacts(listData);
+    setListContacts(listData);
 
-      sendToStorage(listData);
-   
+    sendToStorage(listData);
   };
 
   const deleteContact = (deleteValue) => {
@@ -37,19 +46,9 @@ const useContacts = (_) => {
     setListContacts(list);
 
     sendToStorage(list);
-    //window.localStorage.removeItem(keyStore);
   };
 
-  const updateContact = () => {};
-
-  const getContacts = (_) => {
-    setTimeout(() => {
-      const contactsStorage = JSON.parse(window.localStorage.getItem(keyStore));
-
-      setListContacts(contactsStorage ?? []);
-
-      setLoading(false);
-    }, 1000);
+  const updateContact = () => {
   };
 
   return {
